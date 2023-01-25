@@ -23,11 +23,11 @@ jobs:
           sudo apt install ninja-build
       - name: Generate build files
         run: |
-          mkdir build && cd build
-          cmake .. -GNinja -DCMAKE_BUILD_TYPE=Debgu
+          mkdir build-output && cd build-output
+          cmake .. -GNinja -DCMAKE_BUILD_TYPE=Debug
       - name: Run build-wrapper
         run: |
-          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} ninja -C build
+          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} ninja -C build-output
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
